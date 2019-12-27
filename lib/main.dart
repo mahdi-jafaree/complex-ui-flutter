@@ -27,14 +27,7 @@ class AppClock extends StatelessWidget {
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
-            new Clock(
-                circleColor: Colors.black,
-                showBellsAndLegs: false,
-                bellColor: Colors.green,
-                clockText: ClockText.arabic,
-                showHourHandleHeartShape: false,
-            ),
+            new Clock(),
           ],
         ),
       ),
