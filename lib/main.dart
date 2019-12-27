@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'clock.dart';
 import 'clock_text.dart';
 
-
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -12,18 +11,14 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Clock',
       theme: new ThemeData(
-
         primarySwatch: Colors.blue,
       ),
-
       home: new AppClock(),
     );
   }
 }
 
-
-class AppClock extends StatelessWidget{
-
+class AppClock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -46,5 +41,3 @@ class AppClock extends StatelessWidget{
     );
   }
 }
-
-
