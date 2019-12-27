@@ -64,24 +64,32 @@ class _Clock extends State<Clock> {
 
   Container buildClockCircle(BuildContext context) {
     return new Container(
-      width: double.infinity,
-      decoration: new BoxDecoration(
-        shape: BoxShape.circle,
-        color: widget.circleColor,
-        boxShadow: [
-          new BoxShadow(
-            offset: new Offset(0.0, 5.0),
-            blurRadius: 5.0,
-          )
-        ],
-      ),
-
-      child: new ClockFace(
-          clockText : widget.clockText,
-          showHourHandleHeartShape: widget.showHourHandleHeartShape,
-          dateTime: dateTime,
-      ),
-
-    );
+        width: double.infinity,
+        decoration: new BoxDecoration(
+          shape: BoxShape.circle,
+          color: widget.circleColor,
+          boxShadow: [
+            new BoxShadow(
+              offset: new Offset(0.0, 5.0),
+              blurRadius: 5.0,
+            )
+          ],
+        ),
+        child: Stack(
+          children: <Widget>[
+            new ClockFace(
+              clockText: widget.clockText,
+              dateTime: dateTime,
+            ),
+            new Container(
+              padding: EdgeInsets.all(25),
+              width: double.infinity,
+              child: new CustomPaint(
+                painter: new ClockDialPainter(clockText: widget.clockText),
+              ),
+            ),
+            new ClockHands(dateTime: dateTime),
+          ],
+        ));
   }
 }
