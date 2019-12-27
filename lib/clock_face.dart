@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'clock_dial_painter.dart';
 import 'clock_hands.dart';
 
-class ClockFace extends StatelessWidget{
-
+class ClockFace extends StatelessWidget {
   final DateTime dateTime;
   final ClockText clockText;
-  final bool showHourHandleHeartShape;
 
-  ClockFace({this.clockText = ClockText.arabic, this.showHourHandleHeartShape = false, this.dateTime});
+  ClockFace({this.clockText = ClockText.arabic, this.dateTime});
 
   @override
   Widget build(BuildContext context) {
@@ -60,5 +58,3 @@ class ClockFace extends StatelessWidget{
     );
   }
 }
-
-
