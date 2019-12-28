@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'clock.dart';
-import 'clock_text.dart';
+import 'package:complex_ui/clock/clock.dart';
+import 'package:complex_ui/clock/clock_text.dart';
 
 void main() => runApp(new MyApp());
 
