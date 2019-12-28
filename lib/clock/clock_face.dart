@@ -21,6 +21,14 @@ class ClockFace extends StatelessWidget {
             decoration: new BoxDecoration(
               shape: BoxShape.circle,
               color: Color(0xfff4f9fd),
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(8.0, 0),
+                  blurRadius: 13,
+                  spreadRadius: 1,
+                  color: Color(0xffd3e0f0)
+                )
+              ]
             ),
           ),
         ),
