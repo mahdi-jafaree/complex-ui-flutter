@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'hand_hour.dart';
-import 'hand_minute.dart';
-import 'hand_second.dart';
+import 'package:complex_ui/clock/hand_hour.dart';
+import 'package:complex_ui/clock/hand_minute.dart';
+import 'package:complex_ui/clock/hand_second.dart';
 import 'package:flutter/material.dart';
 
 
