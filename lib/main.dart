@@ -30,6 +30,7 @@ class AppClock extends StatelessWidget {
       child: DefaultTabController(
           length: 3,
           child: Scaffold(
+            bottomNavigationBar: BottomBar(),
             appBar: AppBar(
               elevation: 0.0,
               backgroundColor: Colors.transparent,
@@ -84,8 +85,12 @@ class AppClock extends StatelessWidget {
             ),
             body: TabBarView(
                 children: <Widget>[
-                  Text("First Screen"),
-                  Text("Second Screen"),
+                  Center(
+                    child: FirstTab(),
+                  ),
+                  Center(
+                    child: SecondTab(),
+                  ),
                   Text("Third Screen"),
                 ]
             ),
