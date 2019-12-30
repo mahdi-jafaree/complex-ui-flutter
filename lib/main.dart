@@ -1,6 +1,9 @@
+import 'package:complex_ui/screens/first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:complex_ui/clock/clock.dart';
 import 'package:complex_ui/clock/clock_text.dart';
+
+import 'package:complex_ui/screens/second_screen.dart';
 
 void main() => runApp(new MyApp());
 
@@ -27,6 +30,7 @@ class AppClock extends StatelessWidget {
       child: DefaultTabController(
           length: 3,
           child: Scaffold(
+            bottomNavigationBar: BottomBar(),
             appBar: AppBar(
               elevation: 0.0,
               backgroundColor: Colors.transparent,
@@ -81,8 +85,12 @@ class AppClock extends StatelessWidget {
             ),
             body: TabBarView(
                 children: <Widget>[
-                  Text("First Screen"),
-                  Text("Second Screen"),
+                  Center(
+                    child: FirstTab(),
+                  ),
+                  Center(
+                    child: SecondTab(),
+                  ),
                   Text("Third Screen"),
                 ]
             ),
@@ -90,4 +98,48 @@ class AppClock extends StatelessWidget {
       ),
     );
   }
+}
+
+class BottomBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Padding(
+      padding: EdgeInsets.fromLTRB(50, 0, 50, 50),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          FlatButton(
+            child: Text(
+              "EDIT ALARMS",
+              style: TextStyle(letterSpacing: 1.5),
+            ),
+            color: Color(0xffff5e92),
+            textColor: Colors.white,
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            onPressed: () {},
+          ),
+          FloatingActionButton(
+            child: Text(
+              "+",
+              style: TextStyle(
+                color: Color(0xff253165),
+                fontWeight: FontWeight.w700,
+                fontSize: 25
+              ),
+            ),
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
+            elevation: 5,
+            highlightElevation: 3,
+            onPressed: () {},
+          )
+        ],
+      ),
+    );
+  }
+
 }
