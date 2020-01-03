@@ -1,3 +1,4 @@
+import 'package:complex_ui/screens/car_detail.dart';
 import 'package:complex_ui/screens/first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:complex_ui/clock/clock.dart';
@@ -120,9 +121,15 @@ class BottomBar extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            onPressed: () {},
+
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return CarDetail();
+              }));
+            },
           ),
           FloatingActionButton(
+            heroTag: "btn1",
             child: Text(
               "+",
               style: TextStyle(
@@ -136,6 +143,17 @@ class BottomBar extends StatelessWidget {
             elevation: 5,
             highlightElevation: 3,
             onPressed: () {},
+          ),
+          FloatingActionButton(
+            heroTag: "btn2",
+            child: Icon(Icons.send),
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.indigo,
+            elevation: 2,
+            highlightElevation: 3,
+            onPressed: () {
+             Navigator.push(context, MaterialPageRoute(builder: (context) => new CarDetail()));
+            },
           )
         ],
       ),
