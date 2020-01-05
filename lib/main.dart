@@ -1,4 +1,4 @@
-import 'package:complex_ui/screens/car_detail.dart';
+import 'package:complex_ui/screens/third_screen.dart';
 import 'package:complex_ui/screens/first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:complex_ui/clock/clock.dart';
