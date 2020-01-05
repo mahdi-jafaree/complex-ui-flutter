@@ -180,7 +180,7 @@ class CustomBottomSheet extends StatefulWidget {
 }
 
 class _CustomBottomSheetState extends State<CustomBottomSheet> {
-  // double maxSheetTop = 400;
+  double maxSheetTop = 400;
   double minSheetTop = 30;
   double sheetTop = 400;
 
@@ -188,7 +188,6 @@ class _CustomBottomSheetState extends State<CustomBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    // sheetTop = maxSheetTop;
     return Positioned(
       top: sheetTop,
       left: 0,
