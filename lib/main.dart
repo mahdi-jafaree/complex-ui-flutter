@@ -1,4 +1,4 @@
-import 'package:complex_ui/screens/car_detail.dart';
+import 'package:complex_ui/screens/third_screen.dart';
 import 'package:complex_ui/screens/first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:complex_ui/clock/clock.dart';
@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Clock',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
@@ -124,7 +125,7 @@ class BottomBar extends StatelessWidget {
 
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return CarDetail();
+                return ThirdScreen();
               }));
             },
           ),
@@ -152,7 +153,7 @@ class BottomBar extends StatelessWidget {
             elevation: 2,
             highlightElevation: 3,
             onPressed: () {
-             Navigator.push(context, MaterialPageRoute(builder: (context) => new CarDetail()));
+             Navigator.push(context, MaterialPageRoute(builder: (context) => new ThirdScreen()));
             },
           )
         ],
