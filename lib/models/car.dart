@@ -4,7 +4,6 @@ double iconSize = 30;
 
 CarList carList = CarList(cars: [
   Car(companyName: "Chevrolet", carName: "Corvette", price: 2100, imgList: [
-    "images/alloy-asphalt-auto-automobile.jpg",
     "images/asphalt-auto-automobile-automotive.jpg",
     "images/asphalt-auto-automobile-brand.jpg",
     "images/mercedes-benz-silver-coupe-convertible.jpg",
@@ -40,7 +39,6 @@ CarList carList = CarList(cars: [
     {Icon(Icons.ac_unit, size: iconSize): "AC"},
   ]),
   Car(companyName: "Lamborghini", carName: "Aventador", price: 3000, imgList: [
-    "images/alloy-asphalt-auto-automobile.jpg",
     "images/asphalt-auto-automobile-automotive.jpg",
     "images/asphalt-auto-automobile-brand.jpg",
     "images/mercedes-benz-silver-coupe-convertible.jpg",
