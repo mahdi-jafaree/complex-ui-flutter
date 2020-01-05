@@ -125,7 +125,7 @@ class BottomBar extends StatelessWidget {
 
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return CarDetail();
+                return ThirdScreen();
               }));
             },
           ),
@@ -153,7 +153,7 @@ class BottomBar extends StatelessWidget {
             elevation: 2,
             highlightElevation: 3,
             onPressed: () {
-             Navigator.push(context, MaterialPageRoute(builder: (context) => new CarDetail()));
+             Navigator.push(context, MaterialPageRoute(builder: (context) => new ThirdScreen()));
             },
           )
         ],
