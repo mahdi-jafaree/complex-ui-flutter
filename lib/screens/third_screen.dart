@@ -12,12 +12,16 @@ class ThirdScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: Container(
-          margin: EdgeInsets.only(left: 25),
-          child: Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-        ),
+            margin: EdgeInsets.only(left: 25),
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.pop(context, true);
+              },
+            )),
         actions: <Widget>[
           Container(
             margin: EdgeInsets.only(right: 25),
