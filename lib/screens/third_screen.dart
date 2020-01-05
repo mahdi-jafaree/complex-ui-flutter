@@ -219,6 +219,19 @@ class SheetContainer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           drawerHandle(),
+          Expanded(
+            flex: 1,
+            child: ListView(
+              children: <Widget>[
+                offerDetails(sheetItemHeight),
+                specifications(sheetItemHeight),
+                features(sheetItemHeight),
+                SizedBox(
+                  height: 220,
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
