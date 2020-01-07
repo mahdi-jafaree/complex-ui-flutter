@@ -268,7 +268,34 @@ class _CustomBottomSheetState extends State<CustomBottomSheet>
   double minSheetTop = 30;
   double sheetTop = 400;
 
-  bool isExpanded = false;
+  Animation<double> animation;
+  AnimationController controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = AnimationController(
+        duration: const Duration(microseconds: 200), vsync: this);
+    animation = Tween<double>(begin: sheetTop, end: minSheetTop).animate(
+        CurvedAnimation(
+            parent: controller,
+            curve: Curves.easeInOut,
+            reverseCurve: Curves.easeInOut))
+      ..addListener(() {
+        setState(() {});
+      });
+  }
+
+  forwardAnimation() {
+    controller.forward();
+    stateBloc.toggleAnimation();
+  }
+
+  reverseAnimation() {
+    controller.reverse();
+    stateBloc.toggleAnimation();
+  }
 
   @override
   Widget build(BuildContext context) {
