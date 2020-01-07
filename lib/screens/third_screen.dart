@@ -300,14 +300,22 @@ class _CustomBottomSheetState extends State<CustomBottomSheet>
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: sheetTop,
+      top: animation.value,
       left: 0,
       child: GestureDetector(
         onTap: () {
-          setState(() {
-            isExpanded ? sheetTop = 400 : sheetTop = minSheetTop;
-            isExpanded = !isExpanded;
-          });
+          controller.isCompleted ? reverseAnimation() : forwardAnimation();
+        },
+        onVerticalDragEnd: (DragEndDetails dragEndDetails) {
+          // upward drag
+          if (dragEndDetails.primaryVelocity < 0.0) {
+            forwardAnimation();
+          } else if (dragEndDetails.primaryVelocity > 0.0) {
+            // downward drag
+            reverseAnimation();
+          } else {
+            return;
+          }
         },
         child: SheetContainer(),
       ),
