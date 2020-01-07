@@ -262,7 +262,8 @@ class CustomBottomSheet extends StatefulWidget {
   _CustomBottomSheetState createState() => _CustomBottomSheetState();
 }
 
-class _CustomBottomSheetState extends State<CustomBottomSheet> {
+class _CustomBottomSheetState extends State<CustomBottomSheet>
+    with SingleTickerProviderStateMixin {
   double maxSheetTop = 400;
   double minSheetTop = 30;
   double sheetTop = 400;
