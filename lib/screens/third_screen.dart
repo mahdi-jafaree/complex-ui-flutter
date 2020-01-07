@@ -123,7 +123,20 @@ class _CarDetailsAnimationState extends State<CarDetailsAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return CarDetails();
+    return StreamBuilder<Object>(
+        initialData: StateProvider().isAnimating,
+        stream: stateBloc.animationStatus,
+        builder: (context, snapshot) {
+          snapshot.data ? forward() : reverse();
+
+          return ScaleTransition(
+            scale: scaleAnimation,
+            child: FadeTransition(
+              opacity: fadeAnimation,
+              child: CarDetails(),
+            ),
+          );
+        });
   }
 }
 
