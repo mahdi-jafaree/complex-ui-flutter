@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:complex_ui/bloc/state_bloc.dart';
+import 'package:complex_ui/bloc/state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:complex_ui/models/car.dart';
 
@@ -40,7 +42,39 @@ class LayoutStarts extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Stack(
-      children: <Widget>[CarDetailsAnimation(), CustomBottomSheet()],
+      children: <Widget>[
+        CarDetailsAnimation(),
+        CustomBottomSheet(),
+        RentButton()
+      ],
+    );
+  }
+}
+
+class RentButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: SizedBox(
+        width: 200,
+        child: FlatButton(
+          onPressed: () {},
+          child: Text(
+            "Rent Car",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                letterSpacing: 1.4,
+                fontFamily: "arial"),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(35)),
+          ),
+          color: Colors.black,
+          padding: EdgeInsets.all(25),
+        ),
+      ),
     );
   }
 }
@@ -50,10 +84,59 @@ class CarDetailsAnimation extends StatefulWidget {
   _CarDetailsAnimationState createState() => _CarDetailsAnimationState();
 }
 
-class _CarDetailsAnimationState extends State<CarDetailsAnimation> {
+class _CarDetailsAnimationState extends State<CarDetailsAnimation>
+    with TickerProviderStateMixin {
+  AnimationController fadeController;
+  AnimationController scaleController;
+
+  Animation fadeAnimation;
+  Animation scaleAnimation;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    fadeController =
+        AnimationController(duration: Duration(milliseconds: 180), vsync: this);
+
+    scaleController =
+        AnimationController(duration: Duration(milliseconds: 350), vsync: this);
+
+    fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(fadeController);
+    scaleAnimation = Tween(begin: 0.8, end: 1.0).animate(CurvedAnimation(
+      parent: scaleController,
+      curve: Curves.easeInOut,
+      reverseCurve: Curves.easeInOut,
+    ));
+  }
+
+  forward() {
+    scaleController.forward();
+    fadeController.forward();
+  }
+
+  reverse() {
+    scaleController.reverse();
+    fadeController.reverse();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return CarDetails();
+    return StreamBuilder<Object>(
+        initialData: StateProvider().isAnimating,
+        stream: stateBloc.animationStatus,
+        builder: (context, snapshot) {
+          snapshot.data ? forward() : reverse();
+
+          return ScaleTransition(
+            scale: scaleAnimation,
+            child: FadeTransition(
+              opacity: fadeAnimation,
+              child: CarDetails(),
+            ),
+          );
+        });
   }
 }
 
@@ -179,24 +262,60 @@ class CustomBottomSheet extends StatefulWidget {
   _CustomBottomSheetState createState() => _CustomBottomSheetState();
 }
 
-class _CustomBottomSheetState extends State<CustomBottomSheet> {
+class _CustomBottomSheetState extends State<CustomBottomSheet>
+    with SingleTickerProviderStateMixin {
   double maxSheetTop = 400;
   double minSheetTop = 30;
   double sheetTop = 400;
 
-  bool isExpanded = false;
+  Animation<double> animation;
+  AnimationController controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = AnimationController(
+        duration: const Duration(microseconds: 200), vsync: this);
+    animation = Tween<double>(begin: sheetTop, end: minSheetTop).animate(
+        CurvedAnimation(
+            parent: controller,
+            curve: Curves.easeInOut,
+            reverseCurve: Curves.easeInOut))
+      ..addListener(() {
+        setState(() {});
+      });
+  }
+
+  forwardAnimation() {
+    controller.forward();
+    stateBloc.toggleAnimation();
+  }
+
+  reverseAnimation() {
+    controller.reverse();
+    stateBloc.toggleAnimation();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: sheetTop,
+      top: animation.value,
       left: 0,
       child: GestureDetector(
         onTap: () {
-          setState(() {
-            isExpanded ? sheetTop = 400 : sheetTop = minSheetTop;
-            isExpanded = !isExpanded;
-          });
+          controller.isCompleted ? reverseAnimation() : forwardAnimation();
+        },
+        onVerticalDragEnd: (DragEndDetails dragEndDetails) {
+          // upward drag
+          if (dragEndDetails.primaryVelocity < 0.0) {
+            forwardAnimation();
+          } else if (dragEndDetails.primaryVelocity > 0.0) {
+            // downward drag
+            reverseAnimation();
+          } else {
+            return;
+          }
         },
         child: SheetContainer(),
       ),
