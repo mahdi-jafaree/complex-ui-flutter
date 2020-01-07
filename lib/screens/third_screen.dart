@@ -1,4 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:complex_ui/bloc/state_bloc.dart';
+import 'package:complex_ui/bloc/state_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:complex_ui/models/car.dart';
 
