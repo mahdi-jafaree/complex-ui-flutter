@@ -42,7 +42,11 @@ class LayoutStarts extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Stack(
-      children: <Widget>[CarDetailsAnimation(), CustomBottomSheet()],
+      children: <Widget>[
+        CarDetailsAnimation(),
+        CustomBottomSheet(),
+        RentButton()
+      ],
     );
   }
 }
